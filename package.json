@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "start": "cd backend && npm start",
+    "build": "cd backend && npm install",
+    "install": "cd backend && npm install",
+    "health": "cd backend && npm run health",
+    "mobile:start": "expo start",
+    "mobile:android": "expo start --android",
+    "mobile:ios": "expo start --ios",
+    "mobile:web": "expo start --web"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
