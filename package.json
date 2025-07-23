@@ -7,7 +7,6 @@
     "start": "cd backend && node server.js",
     "dev": "cd backend && nodemon server.js",
     "build": "cd backend && npm install",
-    "postinstall": "cd backend && npm install && npm run setup:db",
     "setup:db": "cd backend && npm run migrate && npm run seed:initial",
     "migrate": "cd backend && knex migrate:latest",
     "migrate:make": "cd backend && knex migrate:make",
