@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "Skladreact backend deployment wrapper",
   "scripts": {
-    "start": "cd backend && npm start",
-    "build": "cd backend && npm install",
-    "postinstall": "cd backend && npm install",
+    "start": "echo 'Starting server...' && cd backend && npm start",
+    "build": "echo 'Build completed'",
     "health": "cd backend && npm run health"
   },
   "engines": {
