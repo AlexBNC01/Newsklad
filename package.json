@@ -1,14 +1,64 @@
 {
-  "name": "sklreact-deploy",
+  "name": "skladreact-backend",
   "version": "1.0.0",
-  "description": "Skladreact backend deployment wrapper",
+  "description": "Backend API для системы управления складом запчастей",
+  "main": "backend/server.js",
   "scripts": {
-    "start": "echo 'Starting server...' && cd backend && npm start",
-    "build": "echo 'Build completed'",
-    "health": "cd backend && npm run health"
+    "start": "cd backend && node server.js",
+    "dev": "cd backend && nodemon server.js",
+    "build": "cd backend && npm install",
+    "postinstall": "cd backend && npm install && npm run setup:db",
+    "setup:db": "cd backend && npm run migrate && npm run seed:initial",
+    "migrate": "cd backend && knex migrate:latest",
+    "migrate:make": "cd backend && knex migrate:make",
+    "migrate:rollback": "cd backend && knex migrate:rollback",
+    "migrate:status": "cd backend && knex migrate:status",
+    "seed": "cd backend && knex seed:run",
+    "seed:initial": "cd backend && knex seed:run --specific=01_initial_data.js",
+    "seed:make": "cd backend && knex seed:make",
+    "db:reset": "cd backend && npm run migrate:rollback --all && npm run migrate && npm run seed",
+    "health": "cd backend && node scripts/health-check.js",
+    "test": "cd backend && jest"
   },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.3",
+    "knex": "^3.0.1",
+    "multer": "^1.4.5-lts.1",
+    "@aws-sdk/client-s3": "^3.456.0",
+    "@aws-sdk/s3-request-presigner": "^3.456.0",
+    "sharp": "^0.32.6",
+    "joi": "^17.11.0",
+    "express-rate-limit": "^7.1.5",
+    "compression": "^1.7.4",
+    "express-validator": "^7.0.1",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.7",
+    "uuid": "^9.0.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
+  },
+  "keywords": [
+    "inventory",
+    "warehouse",
+    "parts",
+    "equipment",
+    "api",
+    "timeweb"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
   "engines": {
-    "node": ">=18.0.0"
-  },
-  "private": true
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
 }
