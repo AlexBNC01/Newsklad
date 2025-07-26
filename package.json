@@ -22,8 +22,9 @@
     "backend:db:reset": "cd backend && npm run migrate:rollback --all && npm run migrate && npm run seed",
     "backend:health": "cd backend && node scripts/health-check.js",
     "backend:test": "cd backend && jest",
-    "deploy:start": "cd backend && npm start",
-    "deploy:build": "cd backend && npm install"
+    "deploy:start": "cd backend && node server.js",
+    "deploy:build": "cd backend && npm install --production",
+    "deploy:setup": "cd backend && npm run migrate && npm run seed:initial"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
