@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // Базовый URL API
 const API_BASE_URL = __DEV__ 
   ? 'http://localhost:3000/api'  // Для разработки
-  : 'https://your-domain.ru/api'; // Для продакшена
+  : 'https://alexbnc01-newsklad-7dd6.twc1.net/api'; // Для продакшена
 
 // Timeout для запросов
 const REQUEST_TIMEOUT = 30000; // 30 секунд
