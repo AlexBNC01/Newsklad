@@ -21,7 +21,7 @@ const uploadRoutes = require('./routes/upload');
 
 // Middleware
 const errorHandler = require('./middleware/errorHandler');
-const auth = require('./middleware/auth');
+const { auth } = require('./middleware/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;

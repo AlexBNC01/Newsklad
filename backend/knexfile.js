@@ -1,22 +1,34 @@
 require('dotenv').config();
 
-// Поддержка DATABASE_URL для Timeweb Cloud Apps
-const connectionConfig = process.env.DATABASE_URL 
-  ? {
+// Поддержка DATABASE_URL для Timeweb Cloud Apps и SQLite для разработки
+let client = 'postgresql';
+let connectionConfig;
+
+if (process.env.DATABASE_URL) {
+  if (process.env.DATABASE_URL.startsWith('sqlite:')) {
+    client = 'sqlite3';
+    connectionConfig = {
+      filename: process.env.DATABASE_URL.replace('sqlite:', '')
+    };
+  } else {
+    connectionConfig = {
       connectionString: process.env.DATABASE_URL,
       ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false
-    }
-  : {
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT || 5432,
-      database: process.env.DB_NAME,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
     };
+  }
+} else {
+  connectionConfig = {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT || 5432,
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
+  };
+}
 
 const commonConfig = {
-  client: 'postgresql',
+  client: client,
   connection: connectionConfig,
   migrations: {
     directory: './migrations',
