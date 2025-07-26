@@ -1,0 +1,13 @@
+{
+  "name": "skladreact-deploy",
+  "version": "1.0.0",
+  "description": "Backend deployment for Timeweb Cloud Apps",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && NODE_ENV=production node server.js",
+    "build": "cd backend && npm install --production"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
