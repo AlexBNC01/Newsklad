@@ -4,7 +4,8 @@
   "description": "Skladreact - React Native App with Backend",
   "main": "index.js",
   "scripts": {
-    "start": "expo start",
+    "start": "node backend/server.js",
+    "expo": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -22,8 +23,7 @@
     "backend:db:reset": "cd backend && npm run migrate:rollback --all && npm run migrate && npm run seed",
     "backend:health": "cd backend && node scripts/health-check.js",
     "backend:test": "cd backend && jest",
-    "deploy:start": "node backend/server.js",
-    "deploy:build": "cd backend && npm install --production",
+    "build": "cd backend && npm install --production",
     "deploy:setup": "cd backend && npm run migrate && npm run seed:initial"
   },
   "dependencies": {
