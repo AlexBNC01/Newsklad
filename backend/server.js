@@ -1,4 +1,12 @@
 require('dotenv').config();
+
+// Диагностика переменных окружения
+console.log('🔍 Environment check:');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('PORT:', process.env.PORT);
+console.log('JWT_SECRET exists:', !!process.env.JWT_SECRET);
+console.log('JWT_REFRESH_SECRET exists:', !!process.env.JWT_REFRESH_SECRET);
+console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -151,7 +159,13 @@ const server = app.listen(PORT, '0.0.0.0', () => {
 🌍 Окружение: ${process.env.NODE_ENV || 'development'}
 📝 API документация: http://0.0.0.0:${PORT}/api/docs
 🏥 Health check: http://0.0.0.0:${PORT}/health
+🔌 Listening on port: ${PORT}
+🎯 Server ready for connections!
   `);
+  
+  // Дополнительные проверки для Timeweb
+  console.log('✅ Server is listening on port:', server.address().port);
+  console.log('✅ Server is listening on address:', server.address().address);
 });
 
 module.exports = app;
