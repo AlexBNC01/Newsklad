@@ -32,6 +32,7 @@ const errorHandler = require('./middleware/errorHandler');
 const { auth } = require('./middleware/auth');
 
 const app = express();
+// Timeweb требует использование переменной PORT
 const PORT = process.env.PORT || 3000;
 
 // Настройка CORS для российских доменов

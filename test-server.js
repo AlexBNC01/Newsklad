@@ -9,7 +9,8 @@ console.log('Available ENV vars:', Object.keys(process.env).filter(key =>
   key.startsWith('JWT') || key.startsWith('DATABASE') || key === 'PORT' || key === 'NODE_ENV'
 ));
 
-const PORT = process.env.PORT || 8080;
+// Используем PORT как требует Timeweb (по умолчанию 3000)
+const PORT = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
   const response = {
